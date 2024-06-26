@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+## Home
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 프로젝트 개요
 
-## Available Scripts
+이 프로젝트는 React와 Node.js를 사용하여 구현된 위치 기반 애플리케이션입니다. 사용자는 지도를 통해 자신의 위치를 공유하고, 다른 사용자들의 위치를 확인할 수 있습니다. '뚜벅이'와 '부릉이'의 핀을 사용하여 서로 다른 사용자 유형을 시각화합니다.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+### 프로젝트 설치 방법
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **프로젝트 클론**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    ```bash
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
+    ```
 
-### `npm test`
+2. **서버 종속성 설치**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ```bash
+    cd server
+    npm install
+    ```
 
-### `npm run build`
+3. **클라이언트 종속성 설치**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```bash
+    cd ../client
+    npm install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **환경 변수 설정**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    프로젝트 루트 디렉토리에 `.env` 파일을 생성하고 다음과 같이 설정합니다:
 
-### `npm run eject`
+    ```bash
+    MONGO_URI=mongodb://localhost:27017/burung
+    REACT_APP_SOCKET_SERVER=http://localhost:5001
+    PORT=5001
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Running the Project
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 프로젝트 실행 방법
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **MongoDB 실행**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    MongoDB가 로컬에서 실행 중인지 확인합니다. MongoDB가 설치되어 있지 않다면 공식 문서를 참고하여 설치하세요.
 
-## Learn More
+2. **서버 실행**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```bash
+    cd server
+    node server.js
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **클라이언트 실행**
 
-### Code Splitting
+    ```bash
+    cd ../client
+    npm start
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. **애플리케이션 접근**
 
-### Analyzing the Bundle Size
+    브라우저를 열고 `http://localhost:3000`에 접속합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+### 애플리케이션 사용 방법
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. **위치 권한 허용**
 
-### Advanced Configuration
+    브라우저에서 위치 권한을 허용합니다. 모바일 기기에서는 HTTPS를 사용해야 위치 권한 요청이 정상적으로 작동합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. **사용자 유형 변경**
 
-### Deployment
+    페이지 하단의 "접속 모드 변경" 버튼을 클릭하여 '뚜벅이'와 '부릉이'를 변경할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+3. **상태 메시지 설정**
 
-### `npm run build` fails to minify
+    입력 필드에 상태 메시지를 입력하고, "내 위치 공유" 버튼을 클릭하여 현재 위치와 메시지를 공유할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. **다른 사용자 확인**
+
+    지도에 표시된 다른 사용자의 핀을 확인할 수 있습니다. 핀을 클릭하면 해당 사용자의 메시지를 확인할 수 있습니다.
+
+## Components
+
+### 주요 컴포넌트 설명
+
+- **MapPage:** 지도와 사용자 인터페이스를 구성하는 주요 컴포넌트입니다.
+  - react-leaflet를 사용하여 지도를 표시합니다.
+  - 현재 위치를 찾는 LocateButton 컴포넌트를 포함합니다.
+- **useMapFunctions:** 사용자 위치와 상태를 관리하는 훅입니다.
+  - 사용자 위치를 서버에 전송하고, 다른 사용자의 위치를 업데이트합니다.
+  - '뚜벅이'와 '부릉이' 핀을 고정된 위치에 추가합니다.
+- **LocateButton:** 현재 위치로 지도를 이동시키는 버튼 컴포넌트입니다.
+- **markerIcons:** 지도에서 사용되는 마커 아이콘을 정의합니다.
+  - 기본 아이콘, 빨간색 아이콘, 파란색 아이콘을 포함합니다.
+
+## Troubleshooting
+
+### 문제 해결
+
+- **서버 실행 오류**
+  - dotenv 모듈이 설치되지 않은 경우 `npm install dotenv` 명령어를 실행합니다.
+  - 포트가 이미 사용 중인 경우 다른 포트를 사용하도록 `.env` 파일을 수정합니다.
+- **위치 권한 요청 문제**
+  - HTTPS를 사용하여 애플리케이션을 실행합니다.
+  - 모바일 브라우저의 위치 권한 설정을 확인합니다.
+- **MongoDB 연결 오류**
+  - `.env` 파일의 `MONGO_URI` 값이 올바른지 확인합니다.
+  - MongoDB가 로컬에서 실행 중인지 확인합니다.
